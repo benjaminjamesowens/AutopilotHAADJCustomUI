@@ -22,9 +22,9 @@ Start-Transcript "$($env:ProgramData)\HAADJOOBE\HAADJOOBEDeployment.log"
 $installFolder = "$PSScriptRoot\"
 
 # Adding registry items for Hybrid Azure Active Directory Join
-Write-Host "Setting registry items for Hybrid Azure Active Directory Join"
-reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CDJ\AAD" /v TenantId /t REG_SZ /d 40ccd880-3f4e-44fb-bcaa-721b070aae5d /f | Out-Host
-reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CDJ\AAD" /v TenantName /t REG_SZ /d delosincorporated.onmicrosoft.com /f | Out-Host
+#Write-Host "Setting registry items for Hybrid Azure Active Directory Join"
+#reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CDJ\AAD" /v TenantId /t REG_SZ /d 40ccd880-3f4e-44fb-bcaa-721b070aae5d /f | Out-Host
+#reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CDJ\AAD" /v TenantName /t REG_SZ /d delosincorporated.onmicrosoft.com /f | Out-Host
 
 # STEP 19: Adding Hybrid Azure AD Join script process
 Write-Host "Setting registry items for running Hybrid Azure AD Join at machine startup for 60 minutes"
