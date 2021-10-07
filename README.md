@@ -23,5 +23,8 @@ You can use the files in the repository to create an Intune package for deployme
 - Deploys the package during device ESP which is essentially running the Deploy-HAADJOOBE.ps1 script which:
   - Copies the source files to the c:\ProgramData\HAADJOOBE\ directory
   - Creates a scheduled task called "Hybrid Azure AD Join Retry" which is set to run WaitForUserDeviceRegistration.ps1 (a modified version of Steve Prentice's script) which will:
-    - Keep
+    - Displays the Hybrid Azure AD Join Splash Screen by running the script Invoke-AADHybridLockOOBE.ps1 using ServiceUI.exe from MDT (credit to Joymalya Basu Roy on his script here). Using ServiceUI.exe means the process runs under the context of the SYSTEM account, but the splash screen is presented to the logged in user.
+    - Keeps retrying the Automatic-Device-Join scheduled task until it's completed
+    - If/when HAADJ is detected as successful, deleted it's own scheduled task "Hybrid Azure AD Join Retry" so it doesn't run at every login
+    - Determines the interactively logged in user and adds the toast notification to be displayed/run at their next login using the HKCU RunOnce key
 
