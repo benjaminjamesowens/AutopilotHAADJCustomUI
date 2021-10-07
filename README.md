@@ -7,13 +7,21 @@ This is my version of customised HAADJ which is built on work and guidance in bl
 
 You can use the files in the repository to create an Intune package for deployment as part of a HAADJ Autopilot Build
 
-Things to note and change in your files:
+## Things to Prep
 
 - Amend the file Deploy-HAADJOOBE.ps1 to include your tenant name and tenant ID if you're planning to use controlled validation using client side registry settings intead of deploying your SCP record in Active Directory (https://docs.microsoft.com/en-us/azure/active-directory/devices/hybrid-azuread-join-control#configure-client-side-registry-setting-for-scp). If you're not using controlled validation, comment out the lines for your tenant name and ID.
 - Change the PNG image for the toast notification if required by amending .\bin\toastimage.png
 
-How to build the package:
+## How to Build
 - Amend the files as required
 - Run the makeapp.cmd to package files
-- Target the package to be deployed to new device builds (note,
+- Follow the instructions to in the Intune_Install_Commands.txt on how to configure the Win32 package in Intune/MEM
+- Target the package to be deployed to new device builds (note, I saw a good recommend in Joy's blog from Tommy Nielsen saying "If you would like to exclude all the devices already deployed do the following. Go to the dynamic Autopilot group. Export members to csv. Create new group called “Autopilot devices until (enter your date)”. Import the members csv file. Then add this group to excluded on the win32 app package.)
+- Configure the app to be required during ESP in your deployment profile
+
+## How it Works
+- Deploys the package during device ESP which is essentially running the Deploy-HAADJOOBE.ps1 script which:
+  - Copies the source files to the c:\ProgramData\HAADJOOBE\ directory
+  - Creates a scheduled task called "Hybrid Azure AD Join Retry" which is set to run WaitForUserDeviceRegistration.ps1 (a modified version of Steve Prentice's script) which will:
+    - Keep
 
