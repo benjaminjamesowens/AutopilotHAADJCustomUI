@@ -11,6 +11,7 @@ You can use the files in the repository to create an Intune package for deployme
 
 - Amend the file Deploy-HAADJOOBE.ps1 to include your tenant name and tenant ID if you're planning to use controlled validation using client side registry settings intead of deploying your SCP record in Active Directory (https://docs.microsoft.com/en-us/azure/active-directory/devices/hybrid-azuread-join-control#configure-client-side-registry-setting-for-scp). If you're not using controlled validation, comment out the lines for your tenant name and ID.
 - Change the PNG image for the toast notification if required by amending .\bin\toastimage.png
+- Ensure you're deploying UserESP to be skipped as part of your HAADJ Autopilot setup
 
 ## How to Build
 - Amend the files as required
